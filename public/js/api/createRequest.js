@@ -6,7 +6,10 @@ const createRequest = (options = {}) => {
     let url = options.url;
     let method = options.method;
     let data;
-    const callback = (e) => console.log(e);
+    let formData = new FormData;
+    const callback = (e) => {
+        console.log(e)
+    };
 
     if (options.data) {
         data = Object.entries(options.data);
@@ -20,11 +23,9 @@ const createRequest = (options = {}) => {
 
             data = {}; // для GET передаем пустое тело
         } else {
-            data = new FormData;
-            data.forEach(([key, value]) => {
-                data = data.append(key, value);
-            })
+            Object.entries(data).forEach(([key, value]) => formData.append(key, value));
         }
+        
     } else {
         url = options.url;
     }
@@ -33,7 +34,7 @@ const createRequest = (options = {}) => {
         const xhr = new XMLHttpRequest(); 
         xhr.open(method, url);
         xhr.responseType = 'json';
-        xhr.send(data);
+        xhr.send(method === 'GET' ? data : formData);
         xhr.addEventListener('load', callback(xhr))
 
     } catch (error) {

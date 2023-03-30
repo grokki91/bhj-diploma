@@ -60,11 +60,12 @@ class User {
       url: this.URL + '/login',
       method: 'POST',
       data,
-      callback: (err, response) => {
+      callback: (response) => {
+        console.log(response, ' - response');
         if (response && response.user) {
           this.setCurrent(response.user);
         }
-        callback(err, response);
+        console.log(response.error);
       }
     });
   }
