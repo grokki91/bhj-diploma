@@ -7,9 +7,7 @@ const createRequest = (options = {}) => {
     let method = options.method;
     let data;
     let formData = new FormData;
-    const callback = (e) => {
-        console.log(e)
-    };
+    const callback = (e) => console.log(e);
 
     if (options.data) {
         data = Object.entries(options.data);
@@ -23,7 +21,9 @@ const createRequest = (options = {}) => {
 
             data = {}; // для GET передаем пустое тело
         } else {
-            Object.entries(data).forEach(([key, value]) => formData.append(key, value));
+            [...data].forEach(([key, value]) => {
+                formData.append(key, value)
+            });
         }
         
     } else {

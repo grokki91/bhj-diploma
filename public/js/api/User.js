@@ -59,13 +59,15 @@ class User {
     createRequest({
       url: this.URL + '/login',
       method: 'POST',
+      responseType: 'json',
       data,
       callback: (response) => {
-        console.log(response, ' - response');
+        console.log('Мы сейчас в методе login');
         if (response && response.user) {
+          console.log('tut');
           this.setCurrent(response.user);
         }
-        console.log(response.error);
+        callback(response.error);
       }
     });
   }

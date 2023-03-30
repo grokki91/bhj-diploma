@@ -20,6 +20,12 @@
       "name": "Павел",
       "email": "test1@te.st",
       "id": "6n8rphecwlass3ubd"
+    },
+    {
+      "name": "Павел",
+      "email": "test123@te.st",
+      "password": "123",
+      "id": "6n8rph2jclfvmy7pi"
     }
   ],
   "accounts": [
